@@ -106,3 +106,4 @@ C:\Users\bIur\Desktop\Asp.Net\GigHub\GigHub\obj\Debug\GigHub.pdb
 C:\Users\bIur\Desktop\Asp.Net\GigHub\GigHub\obj\Debug\GigHub.Migrations.InitialModel.resources
 C:\Users\bIur\Desktop\Asp.Net\GigHub\GigHub\obj\Debug\GigHub.csproj.GenerateResource.cache
 C:\Users\bIur\Desktop\Asp.Net\GigHub\GigHub\obj\Debug\GigHub.Migrations.CreateGigTable.resources
+C:\Users\bIur\Desktop\Asp.Net\GigHub\GigHub\obj\Debug\GigHub.Migrations.OverrideConventionsForGigsAndGenres.resources
