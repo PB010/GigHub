@@ -101,7 +101,17 @@ h6,
     border-radius: 9px;
 }
 
+.btn-default {
+    color: #ff4342;
+    background-color: #fff;
+    border-color: #ff4342;
+}
 
+.btn-default:hover {
+    color: #fff;
+    background-color: #ff4342;
+    border-color: #ff4342;
+}
 
 
 
@@ -110,8 +120,8 @@ h6,
         color: #ffffff;
     }
 
-    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover {
-        background-color: #ffffff;
-        color: #ff4342;
-    }
+        .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover {
+            background-color: #ffffff;
+            color: #ff4342;
+        }
 }
