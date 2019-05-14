@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 
-namespace GigHub.Views.ViewModels
+namespace GigHub.ViewModels
 {
     public class ValidTime : ValidationAttribute
     {
