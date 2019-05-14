@@ -7,15 +7,15 @@ namespace GigHub.Views.ViewModels
 {
     public class GigFormViewModel
     {
-        [Required]
+        [Required (ErrorMessage = "Venue field is required.")]
         public string Venue { get; set; }
-        [Required]
+        [Required (ErrorMessage = "Date field is required.")]
         [FutureDate]
         public string Date { get; set; }
-        [Required]
+        [Required (ErrorMessage = "Time field is required.")]
         [ValidTime]
         public string Time { get; set; }
-        [Required]
+        [Required (ErrorMessage = "Please select a Genre.")]
         public byte Genre { get; set; }
         public IEnumerable<Genre> Genres { get; set; }
 
