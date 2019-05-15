@@ -23,14 +23,14 @@
                     @gig.Artist.Name
                     @if (Model.ShowActions)
                     {
-                        <button data-followed-id="@gig.Artist.Id" class="btn btn-default btn-sm pull-right js-toggle-follows ">Follow</button>
+                        <button data-followed-id="@gig.Artist.Id" class="btn btn-custom-gig btn-sm pull-right js-toggle-follows ">Follow</button>
                     }
                 </span>
                 <span class="genre">
                     @gig.Genre.Name
                     @if (Model.ShowActions)
                     {
-                        <button data-gig-id="@gig.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Going ?</button>
+                        <button data-gig-id="@gig.Id" class="btn btn-custom-gig btn-default btn-sm pull-right js-toggle-attendance">Going ?</button>
                     }
                 </span>
                 </div>
