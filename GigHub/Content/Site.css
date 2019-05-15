@@ -49,6 +49,10 @@ h6,
     font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+.pull-right-custom {
+    padding-left: 30px;
+}
+
 .navbar-inverse {
     background-color: #ff4342;
     border-color: #ff4342;

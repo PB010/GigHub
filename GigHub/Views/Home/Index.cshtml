@@ -23,7 +23,11 @@
                 <span class="genre">
                     @gig.Genre.Name
                 </span>
-                <button data-gig-id="@gig.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Going ?</button>
+                <div class="pull-right-custom pull-right">
+                    <button data-gig-id="@gig.Id" class="btn btn-default btn-sm  js-toggle-attendance">Going ?</button>
+                    <button class="btn btn-default btn-sm ">Follow</button>
+                </div>
+                
             </div>
         </li>
     }

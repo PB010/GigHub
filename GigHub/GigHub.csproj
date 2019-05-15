@@ -178,7 +178,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AttendancesController.cs" />
+    <Compile Include="Controllers\api\AttendancesController.cs" />
+    <Compile Include="Controllers\api\FollowsController.cs" />
     <Compile Include="Controllers\GigsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -214,9 +215,14 @@
     <Compile Include="Migrations\201905141508217_AddAttendance.Designer.cs">
       <DependentUpon>201905141508217_AddAttendance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905151238144_FollowModelCreated.cs" />
+    <Compile Include="Migrations\201905151238144_FollowModelCreated.Designer.cs">
+      <DependentUpon>201905151238144_FollowModelCreated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Attendance.cs" />
+    <Compile Include="Models\Follow.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Gig.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -316,6 +322,9 @@
     <EmbeddedResource Include="Migrations\201905141508217_AddAttendance.resx">
       <DependentUpon>201905141508217_AddAttendance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905151238144_FollowModelCreated.resx">
+      <DependentUpon>201905151238144_FollowModelCreated.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -332,7 +341,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\api\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
