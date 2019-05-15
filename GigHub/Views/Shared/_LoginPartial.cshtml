@@ -12,7 +12,10 @@
                 <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="#">Gigs I'm Going</a></li>
+                <li>
+                    @Html.ActionLink("Gigs I'm Attending",
+                        "Attending",
+                        "Gigs")</li>
                 <li>@Html.ActionLink("Artists I'm Following",
                         "Index",
                         "Followers")</li>
