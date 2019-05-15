@@ -1,17 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using GigHub.Models;
+using Microsoft.AspNet.Identity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace GigHub.Controllers
 {
     public class FollowersController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
+        public FollowersController()
+        {
+            _context = new ApplicationDbContext();
+        }
         // GET: Followers
         public ActionResult Index()
         {
-            return View();
+            var userId = User.Identity.GetUserId();
+            var followed = _context.Follows
+                .Where(f => f.FollowerId == userId)
+                .Select(f => f.Followed)
+                .ToList();
+
+            return View(followed);
         }
     }
 }
