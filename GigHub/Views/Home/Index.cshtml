@@ -25,7 +25,7 @@
                 </span>
                 <div class="pull-right-custom pull-right">
                     <button data-gig-id="@gig.Id" class="btn btn-default btn-sm  js-toggle-attendance">Going ?</button>
-                    <button class="btn btn-default btn-sm ">Follow</button>
+                    <button data-followed-id="@gig.Artist.Id" class="btn btn-default btn-sm js-toggle-follows ">Follow</button>
                 </div>
                 
             </div>
@@ -49,6 +49,21 @@
                 })
                 .fail(function() {
                     alert("Something failed!");
+                });
+            });
+
+            $('.js-toggle-follows').click(function(e) {
+                var followButton = $(e.target);
+
+                $.post("/api/follows", { followedId: followButton.attr("data-followed-id") })
+                .done(function() {
+                    followButton
+                        .removeClass("btn-default")
+                        .addClass("btn-info")
+                        .text("Followed");
+                })
+                .fail(function() {
+                    alert("Cannot follow");
                 });
             });
         });

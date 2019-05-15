@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using GigHub.Dtos;
 using GigHub.Models;
 using Microsoft.AspNet.Identity;
+using System.Linq;
+using System.Web.Http;
 
 namespace GigHub.Controllers.api
 {
@@ -20,17 +17,17 @@ namespace GigHub.Controllers.api
         }
 
         [HttpPost]
-        public IHttpActionResult Follow([FromBody]string userId)
+        public IHttpActionResult Follow(FollowDto followDto)
         {
             var loggedInUserId = User.Identity.GetUserId();
 
             if (_context.Follows
-                .Any(f => f.FollowerId == loggedInUserId && f.FollowedId == userId))
+                .Any(f => f.FollowerId == loggedInUserId && f.FollowedId == followDto.FollowedId))
                 return BadRequest("You are already following him.");
 
             var follow = new Follow
             {
-                FollowedId = userId,
+                FollowedId = followDto.FollowedId,
                 FollowerId = loggedInUserId
             };
 
