@@ -1,0 +1,68 @@
+﻿@model IEnumerable<GigHub.Models.Gig>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<ul class="gigs">
+    @foreach (var gig in Model)
+    {
+        <li>
+            <div class="date">
+                <div class="month">
+                    @gig.DateTime.ToString("MMM")
+                </div>
+                <div class="day">
+                    @gig.DateTime.ToString("d ")
+                </div>
+            </div>
+            <div class="details">
+                <span class="artist">
+                    @gig.Artist.Name
+                </span>
+                <button data-followed-id="@gig.Artist.Id" class="btn btn-default btn-sm pull-right js-toggle-follows ">Follow</button>
+                <span class="genre">
+                    @gig.Genre.Name
+                </span>
+                    <button data-gig-id="@gig.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Going ?</button>
+                </div>
+        </li>
+    }
+</ul>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $('.js-toggle-attendance').click(function (e) {
+                var goingButton = $(e.target);
+
+                $.post("/api/attendances", {gigId: goingButton.attr("data-gig-id")})
+                .done(function() {
+                    goingButton
+                        .removeClass("btn-default")
+                        .addClass("btn-info")
+                        .text("Going");
+                })
+                .fail(function() {
+                    alert("Something failed!");
+                });
+            });
+
+            $('.js-toggle-follows').click(function(e) {
+                var followButton = $(e.target);
+
+                $.post("/api/follows", { followedId: followButton.attr("data-followed-id") })
+                .done(function() {
+                    followButton
+                        .removeClass("btn-default")
+                        .addClass("btn-info")
+                        .text("Followed");
+                })
+                .fail(function() {
+                    alert("Cannot follow");
+                });
+            });
+        });
+    </script>
+}
