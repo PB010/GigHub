@@ -1,12 +1,16 @@
-﻿using System;
+﻿using GigHub.Controllers;
+using GigHub.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using GigHub.Models;
+using System.Linq.Expressions;
+using System.Web.Mvc;
 
 namespace GigHub.ViewModels
 {
     public class GigFormViewModel
     {
+        public int Id { get; set; }
         [Required (ErrorMessage = "Venue field is required.")]
         public string Venue { get; set; }
         [Required (ErrorMessage = "Date field is required.")]
@@ -18,6 +22,21 @@ namespace GigHub.ViewModels
         [Required (ErrorMessage = "Please select a Genre.")]
         public byte Genre { get; set; }
         public IEnumerable<Genre> Genres { get; set; }
+        public string Heading { get; set; }
+
+        public string Action
+        {
+            get
+            {
+                Expression<Func<GigsController, ActionResult>> update = 
+                    (c => c.Update(this));
+                Expression<Func<GigsController, ActionResult>> create = 
+                    (c => c.Create(this));
+
+                var action = (Id != 0) ? update : create;
+                return (action.Body as MethodCallExpression).Method.Name;
+            }
+        }
 
         public DateTime GetDateTime()
         {
