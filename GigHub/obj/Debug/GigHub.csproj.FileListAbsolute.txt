@@ -120,3 +120,5 @@ C:\Users\bIur\Desktop\Asp.Net\GigHub\GigHub\bin\System.Web.Http.WebHost.xml
 C:\Users\bIur\Desktop\Asp.Net\GigHub\GigHub\obj\Debug\GigHub.Migrations.FollowModelCreated.resources
 C:\Users\bIur\Desktop\Asp.Net\GigHub\GigHub\obj\Debug\GigHub.Migrations.AddIsCanceledToGig.resources
 C:\Users\bIur\Desktop\Asp.Net\GigHub\GigHub\obj\Debug\GigHub.Migrations.AddNotification.resources
+C:\Users\bIur\Desktop\Asp.Net\GigHub\GigHub\bin\AutoMapper.dll
+C:\Users\bIur\Desktop\Asp.Net\GigHub\GigHub\bin\AutoMapper.xml
