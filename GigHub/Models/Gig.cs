@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GigHub.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +9,7 @@ namespace GigHub.Models
 {
     public class Gig
     {
-        public int Id { get; private set; }
+        public int Id { get;  set; }
         public bool IsCanceled { get; private set; }    
         public ApplicationUser Artist { get; set; }
         [Required]
@@ -33,6 +34,25 @@ namespace GigHub.Models
             IsCanceled = true;
 
             var notification = new Notification(this, NotificationType.GigCanceled);
+
+            foreach (var attendee in Attendances.Select(a => a.Attendee))
+            {
+                attendee.Notify(notification);
+            }
+        }
+
+
+        public void Update(GigFormViewModel viewModel)
+        {
+            var notification = new Notification(this, NotificationType.GigUpdated)
+            {
+                OriginalDateTime = DateTime,
+                OriginalVenue = Venue
+            };
+            
+            Venue = viewModel.Venue;
+            DateTime = viewModel.GetDateTime();
+            GenreId = viewModel.Genre;
 
             foreach (var attendee in Attendances.Select(a => a.Attendee))
             {

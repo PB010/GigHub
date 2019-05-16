@@ -15,6 +15,7 @@ namespace GigHub.Controllers.api
         {
             _context = new ApplicationDbContext();
         }
+        
 
         [HttpDelete]
         public IHttpActionResult Cancel(int id)
@@ -33,5 +34,6 @@ namespace GigHub.Controllers.api
 
             return Ok();
         }
+
     }
 }
