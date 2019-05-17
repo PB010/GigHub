@@ -112,6 +112,11 @@ h6,
     height: 44px;
     -ms-border-radius: 9px;
     border-radius: 9px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: none;
+    transition: none;
+
 }
 
 .form-control:focus {
@@ -119,6 +124,8 @@ h6,
     outline: 0;
     -webkit-box-shadow: none;
     box-shadow: none;
+    -webkit-transition: none;
+    transition: none;
 }
 
 .btn {
@@ -226,7 +233,9 @@ h6,
     font-weight: bold;
 }
 
-
+#searchGigs {
+    width: 300px;
+}
 
 @media (max-width: 767px) {
     .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
