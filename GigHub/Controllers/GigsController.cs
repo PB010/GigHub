@@ -137,5 +137,24 @@ namespace GigHub.Controllers
 
             return RedirectToAction("Mine", "Gigs");
         }
+        
+        public ActionResult Details(int id, GigDetailsViewModel viewModel)
+        {
+            var userId = User.Identity.GetUserId();
+            var gig = _context.Gigs
+                .Include(g => g.Artist)
+                .Include(g => g.Attendances.Select(a => a.Attendee))
+                .Single(g => g.Id == id);
+
+            if (gig == null)
+                return HttpNotFound();
+
+            viewModel.IsFollowing = _context.Follows
+                .Any(f => f.FollowedId == gig.ArtistId && f.FollowerId == userId);
+            
+            viewModel.Details(gig, userId);
+
+            return View(viewModel);
+        }
     }
 }
