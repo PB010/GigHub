@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using GigHub.Dtos;
 using GigHub.Models;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
+using GigHub.Dto;
 
 namespace GigHub.Controllers.Api
 {
@@ -29,7 +29,6 @@ namespace GigHub.Controllers.Api
                 .Include(n => n.Gig)
                 .Include(n => n.Gig.Artist)
                 .ToList();
-
             
 
             return notifications.Select(Mapper.Map<Notification, NotificationDto>);

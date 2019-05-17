@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GigHub.Dtos
+namespace GigHub.Dto
 {
     public class GigDto
     {
