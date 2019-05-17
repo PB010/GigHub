@@ -122,3 +122,9 @@ C:\Users\bIur\Desktop\Asp.Net\GigHub\GigHub\obj\Debug\GigHub.Migrations.AddIsCan
 C:\Users\bIur\Desktop\Asp.Net\GigHub\GigHub\obj\Debug\GigHub.Migrations.AddNotification.resources
 C:\Users\bIur\Desktop\Asp.Net\GigHub\GigHub\bin\AutoMapper.dll
 C:\Users\bIur\Desktop\Asp.Net\GigHub\GigHub\bin\AutoMapper.xml
+C:\Users\bIur\Desktop\Asp.Net\GigHub\GigHub\bin\dotless.AspNet.dll
+C:\Users\bIur\Desktop\Asp.Net\GigHub\GigHub\bin\dotless.Core.dll
+C:\Users\bIur\Desktop\Asp.Net\GigHub\GigHub\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\bIur\Desktop\Asp.Net\GigHub\GigHub\bin\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\bIur\Desktop\Asp.Net\GigHub\GigHub\bin\Microsoft.Extensions.DependencyInjection.xml
+C:\Users\bIur\Desktop\Asp.Net\GigHub\GigHub\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml
