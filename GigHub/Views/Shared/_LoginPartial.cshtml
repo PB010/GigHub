@@ -5,28 +5,34 @@
     {
     @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-            <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                @User.Identity.GetUserName()
-                <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-                <li>
-                    @Html.ActionLink("Gigs I'm Attending",
-                        "Attending",
-                        "Gigs")</li>
-                <li>@Html.ActionLink("Artists I'm Following",
-                        "Index",
-                        "Followers")</li> 
-                <li>@Html.ActionLink("My Upcoming Gigs",
-                        "Mine",
-                        "Gigs")</li>
-                <li role="separator" class="divider"></li>
-                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-            </ul>
-        </li>
-    </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="notifications">
+                <a href="#">
+                    <i class="glyphicon glyphicon-globe"></i>
+                    <span class="badge js-notifications-count hide"></span>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @User.Identity.GetUserName()
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        @Html.ActionLink("Gigs I'm Attending",
+                            "Attending",
+                            "Gigs")</li>
+                    <li>@Html.ActionLink("Artists I'm Following",
+                            "Index",
+                            "Followers")</li>
+                    <li>@Html.ActionLink("My Upcoming Gigs",
+                            "Mine",
+                            "Gigs")</li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                </ul>
+            </li>
+        </ul>
     }
 }
 else

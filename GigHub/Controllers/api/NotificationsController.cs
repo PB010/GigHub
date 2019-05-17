@@ -23,7 +23,6 @@ namespace GigHub.Controllers.Api
         public IEnumerable<NotificationDto> GetNewNotifications()
         {
             var userId = User.Identity.GetUserId();
-
             var notifications = _context.UserNotifications
                 .Where(un => un.UserId == userId && !un.IsRead)
                 .Select(un => un.Notification)
