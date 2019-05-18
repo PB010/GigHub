@@ -8,11 +8,23 @@
     @Model.Gig.Artist.Name
     @if (User.Identity.IsAuthenticated)
     {
-        <button data-followed-id="@Model.Gig.Artist.Id"
-                class="btn btn-default
-                btn-sm pull-right
-                js-toggle-follows ">Follow
-        </button>
+        if (Model.IsFollowing)
+        {
+            <button data-followed-id="@Model.Gig.Artist.Id"
+                    id="container-follow"
+                    class="btn btn-info
+                btn-sm
+                js-toggle-follows ">Following
+            </button>
+        }
+        else
+        {
+            <button data-followed-id="@Model.Gig.Artist.Id"
+                    class="btn btn-default
+                btn-sm
+                js-toggle-follows "> Follow
+            </button>
+        }
     }
 </h2>
 
@@ -27,20 +39,7 @@
 {
     <script>
         $(document).ready(function() {
-            $('.js-toggle-follows').click(function(e) {
-                var followButton = $(e.target);
-
-                $.post("/api/follows", { followedId: followButton.attr("data-followed-id") })
-                    .done(function() {
-                        followButton
-                            .removeClass("btn-default")
-                            .addClass("btn-info")
-                            .text("Followed");
-                    })
-                    .fail(function() {
-                        alert("Cannot follow");
-                    });
-            });
+            FollowsController.init("#container-follow");
         });
     </script>
 }

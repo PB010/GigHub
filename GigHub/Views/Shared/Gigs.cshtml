@@ -19,7 +19,7 @@
     </div>
 }
 
-<ul id ="gigs" "class="gigs voffset4">
+<ul id ="gigs" class="gigs voffset4">
     @foreach (var gig in Model.UpcomingGigs)
     {
         <li>
@@ -41,10 +41,7 @@
                     {
                         <span class="label label-warning">Canceled</span>
                     }
-
-                    @if (Model.ShowActions)
-                    {
-                    }
+                    
                 </span>
                 <span class="genre">
                     @gig.Genre.Name
@@ -52,9 +49,10 @@
                     {
                         <button
                             data-gig-id="@gig.Id"
-                            class="btn btn-custom-gig 
+                            class="btn 
                                 @(Model.Attendances.Contains(gig.Id) ? "btn-info" : "btn-default")
-                                btn-sm pull-right js-toggle-attendance">
+                                btn-sm pull-right
+                                js-toggle-attendance">
                             Going ?
                         </button>
                     }

@@ -19,7 +19,6 @@
 
 	var done = function () {
 		var text = (goingButton.text() == "Going") ? "Going?" : "Going";
-
 		goingButton.toggleClass("btn-info").toggleClass("btn-default").text(text);
 	};
 

@@ -35,5 +35,12 @@ namespace GigHub.Controllers.api
             return Ok();
         }
 
+        [HttpGet]
+        public IHttpActionResult Get()
+        {
+            var gigs = _context.Gigs.ToList();
+
+            return Ok(gigs);
+        }
     }
 }
