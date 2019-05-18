@@ -5,7 +5,7 @@
 }
 
 <h2>
-    @Model.Artist
+    @Model.Gig.Artist.Name
     @if (User.Identity.IsAuthenticated)
     {
         if (Model.IsFollowing)
@@ -19,9 +19,9 @@
     }
 </h2>
 
-<p>Performing at @Model.Venue on @Model.DateTime.ToString("d MMM") at @Model.DateTime.ToString("HH:mm") .</p>
+<p>Performing at @Model.Gig.Venue on @Model.Gig.DateTime.ToString("d MMM") at @Model.Gig.DateTime.ToString("HH:mm") .</p>
     
-@if (User.Identity.IsAuthenticated && Model.IsAttending)
+@if (Model.IsAttending)
 {
     <p>You are going to this event.</p>
 }
