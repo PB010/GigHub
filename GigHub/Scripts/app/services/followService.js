@@ -1,11 +1,11 @@
 ﻿var FollowService = function() {
-	var followArtist = function (followId, done, fail) {
+	var createFollowing = function (followId, done, fail) {
 		$.post("/api/follows", { followedId: followId})
 			.done(done)
 			.fail(fail);
 	};
 
-	var unfollowArtist = function(followId, done, fail) {
+	var deleteFollowing = function(followId, done, fail) {
 		$.ajax({
 				url: "/api/follows/" + followId,
 				method: "DELETE"
@@ -15,7 +15,7 @@
 	};
 
 	return {
-		followArtist: followArtist,
-		unfollowArtist: unfollowArtist
+		createFollowing: createFollowing,
+		deleteFollowing: deleteFollowing
 }
 }();

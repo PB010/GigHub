@@ -1,8 +1,8 @@
-﻿var FollowsController = function(followService) {
+﻿var GigDetailsController = function(followService) {
 	var followButton;
 
-	var init = function(container) {
-		$(container).on("click", ".js-toggle-follows", toggleFollow);
+	var init = function() {
+		$(".js-toggle-follows").on("click", toggleFollow);
 	};
 
 	var toggleFollow = function(e) {
@@ -11,9 +11,9 @@
 		var followId = followButton.attr("data-followed-id");
 
 		if (followButton.hasClass("btn-default"))
-			followService.followArtist(followId, done, fail);
+			followService.createFollowing(followId, done, fail);
 		else 
-			followService.unfollowArtist(followId, done, fail);
+			followService.deleteFollowing(followId, done, fail);
 		
 
 	};
