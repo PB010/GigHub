@@ -1,0 +1,21 @@
+﻿using GigHub.Models;
+using System.Linq;
+
+namespace GigHub.Repositories
+{
+    public class FollowingsRepository
+    {
+        private readonly ApplicationDbContext _context;
+
+        public FollowingsRepository(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        public bool GigIsFollowing(string artistId, string userId)
+        {
+            return _context.Follows
+                .Any(f => f.FollowedId == artistId && f.FollowerId == userId);
+        }
+    }
+}
