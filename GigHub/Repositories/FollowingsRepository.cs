@@ -12,7 +12,7 @@ namespace GigHub.Repositories
             _context = context;
         }
 
-        public bool GigIsFollowing(string artistId, string userId)
+        public bool GetFollowing(string artistId, string userId)
         {
             return _context.Follows
                 .Any(f => f.FollowedId == artistId && f.FollowerId == userId);

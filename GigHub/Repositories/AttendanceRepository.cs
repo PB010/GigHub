@@ -20,9 +20,9 @@ namespace GigHub.Repositories
                 .ToList();
         }
 
-        public bool GigIsAttending(string userId)
+        public bool GetAttendance(string userId, int gigId)
         {
-            return _context.Attendances.Any(a => a.AttendeeId == userId);
+            return _context.Attendances.Any(a => a.AttendeeId == userId && a.GigId == gigId);
         }
     }
 }

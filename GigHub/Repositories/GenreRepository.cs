@@ -13,7 +13,7 @@ namespace GigHub.Repositories
             _context = context;
         }
 
-        public IEnumerable<Genre> GenresToList()
+        public IEnumerable<Genre> GetGenres()
         {
             return _context.Genres.ToList();
         }
