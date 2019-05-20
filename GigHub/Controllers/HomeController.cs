@@ -1,43 +1,37 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using GigHub.Core;
+using GigHub.Core.ViewModels;
+using Microsoft.AspNet.Identity;
 using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
-using GigHub.Core.Models;
-using GigHub.Core.ViewModels;
-using GigHub.Persistence;
-using GigHub.Persistence.Repositories;
 
 namespace GigHub.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        private readonly AttendanceRepository _attendanceRepository;
-
-        public HomeController()
+        private readonly IUnitOfWork _unitOfWork;
+        public HomeController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
-            _attendanceRepository = new AttendanceRepository(_context);
+            _unitOfWork = unitOfWork;
         }
         public ActionResult Index(string query = null)
-        {   
-            var upcomingGigs = _context.Gigs
-                .Include(g => g.Artist)
-                .Include(g => g.Genre)
-                .Where(g => g.DateTime > DateTime.Now && !g.IsCanceled);
+        {
+            var upcomingGigs = _unitOfWork.Gigs.GetAllUpcomingGigs();
 
             if (!String.IsNullOrWhiteSpace(query))
             {
                 upcomingGigs = upcomingGigs
                     .Where(g =>
-                        g.Artist.Name.Contains(query) ||
-                        g.Genre.Name.Contains(query) ||
-                        g.Venue.Contains(query));
+                    g.Artist.Name.Contains(query) ||
+                    g.Genre.Name.Contains(query) ||
+                    g.Venue.Contains(query));
+
             }
 
             var userId = User.Identity.GetUserId();
-            var attendances = _attendanceRepository.GetFutureAttendances(userId).ToLookup(a => a.GigId);
+            var attendances = _unitOfWork.Attendances
+                .GetFutureAttendances(userId)
+                .ToLookup(a => a.GigId);
 
             var viewModel = new GigsViewModel
             {
@@ -51,19 +45,6 @@ namespace GigHub.Controllers
             return View("Gigs", viewModel);
         }
 
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        
     }
 }

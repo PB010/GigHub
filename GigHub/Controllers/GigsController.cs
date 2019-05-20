@@ -1,10 +1,9 @@
-﻿using GigHub.Persistence;
+﻿using GigHub.Core;
+using GigHub.Core.Models;
+using GigHub.Core.ViewModels;
 using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Mvc;
-using GigHub.Core;
-using GigHub.Core.Models;
-using GigHub.Core.ViewModels;
 
 namespace GigHub.Controllers
 {
@@ -127,7 +126,8 @@ namespace GigHub.Controllers
                 return View("GigForm", viewModel);
             }
 
-            var gig = _unitOfWork.Gigs.GetGigWithAttendees(viewModel.Id);
+            var userId = User.Identity.GetUserId();
+            var gig = _unitOfWork.Gigs.GetGigWithAttendees(viewModel.Id, userId);
 
             if (gig == null)
                 return HttpNotFound();
@@ -155,8 +155,8 @@ namespace GigHub.Controllers
             {
                 var userId = User.Identity.GetUserId();
 
-                viewModel.IsFollowing = _unitOfWork.Followings.GetFollowing(gig.ArtistId, userId);
-                viewModel.IsAttending = _unitOfWork.Attendances.GetAttendance(userId, gig.Id);
+                viewModel.IsFollowing = _unitOfWork.Followings.GetFollowingBool(gig.ArtistId, userId);
+                viewModel.IsAttending = _unitOfWork.Attendances.GetAttendanceBool(userId, gig.Id);
             }
 
             return View(viewModel);

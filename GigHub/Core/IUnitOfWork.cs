@@ -1,4 +1,5 @@
 ﻿using GigHub.Core.Repositories;
+using GigHub.Persistence.Repositories;
 
 namespace GigHub.Core
 {
@@ -8,6 +9,7 @@ namespace GigHub.Core
         IAttendanceRepository Attendances { get; }
         IFollowingsRepository Followings { get; }
         IGenreRepository Genres { get; }
+        INotificationsRepository Notifications { get; }
         void Complete();
     }
 }

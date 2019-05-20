@@ -1,9 +1,9 @@
-﻿using System;
+﻿using GigHub.Core.Models;
+using GigHub.Core.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using GigHub.Core.Models;
-using GigHub.Core.Repositories;
 
 namespace GigHub.Persistence.Repositories
 {
@@ -16,11 +16,29 @@ namespace GigHub.Persistence.Repositories
             _context = context;
         }
 
-        public Gig GetGigWithAttendees(int gigId)
+        public void Add(Gig gig)
+        {
+            _context.Gigs.Add(gig);
+        }
+
+        public Gig GetGig(int gigId)
         {
             return _context.Gigs
-                .Include(g => Enumerable.Select<Attendance, ApplicationUser>(g.Attendances, a => a.Attendee))
+                .Include(g => g.Artist)
+                .Include(g => g.Genre)
                 .SingleOrDefault(g => g.Id == gigId);
+        }
+
+        public IEnumerable<Gig> GigsToList()
+        {
+            return _context.Gigs.ToList();
+        }
+
+        public Gig GetGigWithAttendees(int gigId, string userId)
+        {
+            return _context.Gigs
+                .Include(g => g.Attendances.Select(a => a.Attendee))
+                .SingleOrDefault(g => g.Id == gigId && g.ArtistId == userId);
 
         }
 
@@ -34,6 +52,14 @@ namespace GigHub.Persistence.Repositories
                 .ToList();
         }
 
+        public IQueryable<Gig> GetAllUpcomingGigs()
+        {
+            return _context.Gigs
+                .Include(g => g.Artist)
+                .Include(g => g.Genre)
+                .Where(g => g.DateTime > DateTime.Now && !g.IsCanceled);
+        }
+
         public IEnumerable<Gig> GetUpcomingGigsByArtist(string userId)
         {
             return _context.Gigs
@@ -45,18 +71,6 @@ namespace GigHub.Persistence.Repositories
                 .ToList();
         }
 
-     
-        public Gig GetGig(int gigId)
-        {
-            return _context.Gigs
-                .Include(g => g.Artist)
-                .Include(g => g.Genre)
-                .SingleOrDefault(g => g.Id == gigId);
-        }
-
-        public void Add(Gig gig)
-        {
-            _context.Gigs.Add(gig);
-        }
+        
     }
 }

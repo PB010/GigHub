@@ -1,54 +1,50 @@
 ﻿using AutoMapper;
-using Microsoft.AspNet.Identity;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web.Http;
+using GigHub.Core;
 using GigHub.Core.Dto;
 using GigHub.Core.Models;
-using GigHub.Persistence;
+using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http;
 
 namespace GigHub.Controllers.Api
 {
     [Authorize]
     public class NotificationsController : ApiController
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public NotificationsController()
+        public NotificationsController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();   
+            _unitOfWork = unitOfWork;
         }
 
         [HttpGet]
         public IEnumerable<NotificationDto> GetNewNotifications()
         {
             var userId = User.Identity.GetUserId();
-            var notifications = _context.UserNotifications
-                .Where(un => un.UserId == userId && !un.IsRead)
-                .Select(un => un.Notification)
-                .Include(n => n.Gig)
-                .Include(n => n.Gig.Artist)
-                .ToList();
+            var notifications = _unitOfWork.Notifications.GetNotificationsForCurrentUser(userId);
             
 
             return notifications.Select(Mapper.Map<Notification, NotificationDto>);
         }
 
+        
+
         [HttpPost]
         public IHttpActionResult NotificationsRead()
         {
             var userId = User.Identity.GetUserId();
-            var notifications = _context.UserNotifications
-                .Where(un => un.UserId == userId && !un.IsRead)
-                .ToList();
+            var notifications = _unitOfWork.Notifications.GetUnreadNotifications(userId);
 
             notifications.ForEach(n => n.ReadNotification());
 
-            _context.SaveChanges();
+            _unitOfWork.Complete();
 
             return Ok();
 
         }
+
+        
     }
 }
